@@ -1,6 +1,0 @@
-@mixin xlarge { @media (min-width: 1501px) { @content; } }
-@mixin large { @media (min-width: 1281px) { @content; } }
-@mixin medium { @media (min-width: 839px) and (max-width: 1280.99px) { @content; } }
-@mixin small { @media (min-width: 600px) and (max-width: 838.99px) { @content; } }
-@mixin xsmall { @media (max-width: 599.99px) { @content; } }
-@mixin short { @media screen and (max-height: 600px) { @content; } }
