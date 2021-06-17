@@ -1,0 +1,79 @@
+@import "../styles/core/queries";
+
+.wallet-container {
+  display: flex;
+  font-size: 1.3rem;
+  justify-items: flex-start;
+  flex-direction: column;
+  white-space: nowrap;
+  gap: .8rem;
+  flex-wrap: wrap;
+
+  @include xsmall { display: none; }
+
+  .amount-block,
+  a {
+    text-decoration: none;
+    font-family: 'Hammersmith One', sans-serif;
+  }
+
+  .title {
+    margin: 0.3rem 0 0.6rem 0;
+    display: block;
+  }
+
+  .amount {
+    background: #16081d;
+    display: block;
+    color: #f83777;
+    padding: 1.1rem;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 22px;
+
+    @include xlarge {
+      min-width: 40px;
+    }
+    @include large {
+      min-width: 40px;
+    }
+  }
+
+  button {
+    margin: 0.9rem 0 0 0;
+  }
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.contract {
+  cursor: grab;
+  border: 1px solid #ffffff;
+  padding: 1rem;
+  text-align: center;
+  border-radius: .4rem;
+  position: relative;
+
+  div {
+    &.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    transition: visibility 300ms, opacity 300ms;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: #28ee65;
+    padding: .3rem 0.8rem;
+    border-radius: 100vw;
+    font-size: 0.6rem;
+    color: #000000;
+  }
+}
+

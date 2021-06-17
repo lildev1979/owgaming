@@ -1,0 +1,232 @@
+@import "styles/core/queries";
+
+html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+::selection { background: rgba(0,0,0,.1); }
+
+body {
+  color: #ffffff;
+  background: #16081d;
+  cursor: default;
+  transition: background .5s;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  background-image: url('./assets/bg.webp');
+  background-size: cover;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin scroll {
+  ::-webkit-scrollbar-track { background-color: #ffffff; }
+  ::-webkit-scrollbar { background-color: #ffffff; width: 5px; }
+  &::-webkit-scrollbar-track { background-color: #ffffff; }
+  &::-webkit-scrollbar { background-color: #ffffff; width: 5px; }
+}
+@mixin scrollColor($color) {
+  ::-webkit-scrollbar-thumb { background-color: $color; }
+  &::-webkit-scrollbar-thumb { background-color:$color; }
+}
+
+main {
+  @include scroll();
+  @include scrollColor(#7c0db5);
+}
+
+a, a:visited, a:link { color: currentColor; }
+h2 { font-weight: 300; }
+h1 {
+  position: relative;
+  line-height: 1;
+  font-size: 1.7rem;
+  margin: 2.5rem 0 3rem 0;
+
+  &:first-child {
+    margin: 0 0 3rem 0;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fe3b65;
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+  }
+
+  strong {
+    color: #fe3b65;
+  }
+}
+
+.sub-title {
+  @extend h1;
+  margin: 3.2rem 0 3rem 0;
+  font-weight: 300;
+}
+
+
+@mixin states($color, $font-color: #000000) {
+  color: $font-color;
+  background: $color;
+  border-color: darken($color,10%);
+
+  &:hover {
+    color: $font-color;
+    border-color: darken($color,10%);
+    background-color: $color;
+  }
+  &:active {
+    color: $font-color;
+    border-color: darken($color,30%);
+    background-color: darken($color,10%);
+  }
+}
+
+@mixin statesBW($color, $font-color: #000000) {
+  color: $font-color;
+  background: $color;
+
+  &:hover {
+    color: $font-color;
+    background: darken($color,25%);
+  }
+  &:active {
+    color: $font-color;
+    background-color: darken($color,35%);
+  }
+}
+
+a.btn,
+.btn {
+  font-family: 'Hammersmith One', sans-serif;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  font-weight: 500;
+  user-select: none;
+  border-radius: 4px;
+  position: relative;
+  text-decoration: none;
+  box-shadow: 0 0 0 rgb(96 96 96 / 0%), 0 0 0 0 rgb(96 96 96 / 0%);
+  transition: all 300ms;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    box-shadow: 0 0 1px rgb(96 96 96 / 31%), 0 4px 8px -2px rgb(96 96 96 / 15%);
+  }
+
+  &.soon {
+    opacity: .5;
+    box-shadow: none;
+    cursor: wait;
+  }
+
+  @include states(#fe3b65);
+
+  &--accent {
+    @include states(#FEE75C);
+  }
+  &--danger {
+    @include states(#EB459E, #ffffff);
+  }
+  &--white {
+    @include states(#ffffff, #000000);
+  }
+  &--vote {
+    @include states(#ffffff, #fe3b65);
+    border-color: #fe3b65;
+    box-shadow: 0 0 1px rgb(96 96 96 / 31%), 0 4px 8px -2px rgb(96 96 96 / 15%);
+    transition: box-shadow 300ms, border-color 300ms;
+
+    &:hover {
+      box-shadow: 0 0 2px rgb(96 96 96 / 31%), 0 7px 9px -2px rgb(96 96 96 / 15%);
+    }
+
+    &.voted {
+      @include states(#fe3b65, #ffffff);
+    }
+  }
+
+  img {
+    height: 25px;
+    margin: 0 10px 0 0;
+  }
+
+  &--poocoin { @include statesBW(#262626, #ffffff); }
+  &--pancakeswap { @include statesBW(#1fc7d4, #ffffff); }
+  &--dex { @include statesBW(#ffffff, #ffffff); }
+  &--ow {
+    img {
+      height: 80px;
+    }
+    @include statesBW(#fe083d, #ffffff);
+  }
+  &--bhy {
+    img {
+      height: 60px;
+    }
+    @include statesBW(#28ee65, #ffffff);
+  }
+
+  &[disabled] {
+    opacity: .5;
+  }
+}
+
+.inner-container {
+  max-width: 740px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 4.4rem 1.2rem;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  justify-content: center;
+}
+
+img {
+  line-height: 0;
+  margin: 0 auto;
+}
+
+.contract-block {
+  padding: .6rem;
+  cursor: grab;
+  width: 100%;
+  margin: 0 0 1.2rem 0;
+  border-radius: .4rem;
+  text-align: center;
+  background: #cecece;
+  color: #000000;
+  transition: background 300ms;
+
+  &:hover {
+    background: #bababa;
+  }
+
+  &:focus {
+    cursor: grabbing;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1.2rem;
+}

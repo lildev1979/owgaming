@@ -1,0 +1,54 @@
+<div class="inner-container">
+    <img src="./assets/logo.webp" alt="OverWorld">
+    <div class="wallet-container" *ngIf="web3Supported">
+        <div class="amount-block">
+            <span class="title">Wallet Address</span>
+            <span class="amount">
+            <span class="cursor" (click)="signInWallet()" *ngIf="!walletAddress"> Connect your wallet </span>
+            <ng-container *ngIf="walletAddress"><span class="green">{{ walletAddress.slice(0, 7) + '...' + walletAddress.slice(walletAddress?.length - 3, walletAddress?.length)}} </span></ng-container>
+          </span>
+        </div>
+        <a class="amount-block">
+            <a href="https://exchange.pancakeswap.finance/#/swap?inputCurrency=0x7d2b2b15f1023425647626c4e411bea51f1ac0cd" class="title">My $OW balance</a>
+            <span class="amount">
+                <ng-container *ngIf="balance === null"> - </ng-container>
+                <ng-container *ngIf="balance || balance === '0'">{{ balance | number:'1.0-0' }}</ng-container>
+            </span>
+        </a>
+<!--        <a class="amount-block">-->
+<!--            <a href="https://exchange.pancakeswap.finance/#/add/BNB/0x7d2b2b15f1023425647626c4e411bea51f1ac0cd" class="title">My OW LP</a>-->
+<!--            <span class="amount">-->
+<!--            <ng-container *ngIf="lpBalance === null"> - </ng-container>-->
+<!--            <ng-container *ngIf="lpBalance || lpBalance === '0'">{{ lpBalance | number:'1.0-0' }}</ng-container>-->
+<!--          </span>-->
+<!--        </a>-->
+        <button (click)="signInWallet()" *ngIf="!walletAddress" class="btn btn--accent">Connect</button>
+        <button (click)="logoutWallet()" *ngIf="walletAddress" class="btn btn--accent">Disconnect</button>
+    </div>
+    <div class="contract" (copied)="copy()" [copy-clipboard]="'0x7d2b2b15f1023425647626c4e411bea51f1ac0cd'">
+        0x7d2b2b15f1023425647626c4e411bea51f1ac0cd
+        <div [class.visible]="success">Copied Successfully!</div>
+    </div>
+    <div class="grid">
+        <a class="btn btn--pancakeswap" href="https://exchange.pancakeswap.finance/#/swap?inputCurrency=0x7d2b2b15f1023425647626c4e411bea51f1ac0cd" target="_blank" title="Buy $OW on PancakeSwap">
+            <img src="./assets/logos/pc.svg" alt="Buy $OW on PancakeSwap">
+            <span>Buy</span>
+        </a>
+        <a class="btn btn--poocoin" href="https://poocoin.app/tokens/0x7d2b2b15f1023425647626c4e411bea51f1ac0cd" target="_blank" title="View $OW Chart PooCoin">
+            <img src="./assets/logos/poocoin.png" alt="View $OW Charts on PooCoin">
+            <span>Charts</span>
+        </a>
+        <a class="btn btn--bhy" href="https://bhype.app/tokens/0x7d2b2b15f1023425647626c4e411bea51f1ac0cd" target="_blank" title="Vote on bHype">
+            <img src="./assets/logos/bhype.png" alt="Vote on bHype">
+        </a>
+        <a class="btn btn--ow" href="https://www.owgaming.co/" target="_blank" title="OverWorld Website">
+            <img src="./assets/apple-touch-icon.png" alt="OverWorld Website">
+        </a>
+        <a class="btn btn--dex" href="https://www.dextools.io/app/pancakeswap/pair-explorer/0x29ff2db06901b7788e92dfd9a4cb92b3b61be98c" target="_blank" title="View $OW Chart DexTools">
+            <img src="./assets/logos/dex.png" alt="View $OW Charts on DexTools">
+        </a>
+        <a class="btn btn--dex" href="https://coinsniper.net/coin/3817" target="_blank" title="Vote on CoinSniper">
+            <img src="./assets/logos/cs.png" alt="Vote on CoinSniper">
+        </a>
+    </div>
+</div>
